@@ -7,13 +7,22 @@ import { MovieContext } from "../contexts/MovieContext";
 export default function MovieList({
     onSelect
 }) {
-    const {movies} = useContext(MovieContext)
+    
+    const {movies, selectedGenre} = useContext(MovieContext)
     return (
         <ScrollView contentContainerStyle={styles.content}>
             <View style={styles.header}>
                 <Text style={styles.title}> Каталог Филми </Text>
                 <Text style={styles.subtitle}>{movies.length} филма в колекцията</Text>
             </View>
+            {selectedGenre && (
+                <View style={styles.genreFilter}>
+                    <Text style={styles.genreFilterLabel}>Filter by genre:</Text>
+                    <View style={styles.genreChip}>
+                        <Text style={styles.genreChipText}>{selectedGenre}</Text>
+                    </View>
+                </View> 
+            )}
             {movies.map(movie => <MovieCard key={movie.id}{...movie} onSelect= {() => onSelect(movie)} />)}
         </ScrollView>
 
