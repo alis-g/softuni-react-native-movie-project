@@ -1,4 +1,4 @@
-import { StyleSheet, View, Image, Text, Pressable } from "react-native";
+import { StyleSheet, View, Image, Text, Pressable, ScrollView } from "react-native";
 import { colors } from "../theme";
 import { formatDuration } from "../utils/dateTimeUtils";
 import GenreTags from "./GenreTag";
@@ -9,7 +9,7 @@ export default function MovieDetails({
     onBack
 }) {
     return (
-        <View style={styles.content}>
+        <ScrollView contentContainerStyle={styles.content}>
             <View style={styles.topBar}>
                 <Pressable style={styles.backButton} onPress={onBack}>
                 <Text style={styles.backText}>Back</Text>
@@ -30,7 +30,7 @@ export default function MovieDetails({
             <MovieDetailsRow label="Genre" value={movie.genre} />
         </View>
            
-        </View>
+        </ScrollView>
     );
 }
 
