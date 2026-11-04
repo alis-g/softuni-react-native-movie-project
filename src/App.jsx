@@ -1,11 +1,12 @@
 
-import { View } from 'react-native';
+import { StatusBar, View } from 'react-native';
 import { colors } from './theme';
 import data from './data.json'
 
 import MovieList from './components/MovieList.jsx';
 import MovieDetails from './components/MovieDetails.jsx';
 import { useState } from 'react';
+
 
 export default function App() {
   const [selectedMovie, setSelectedMovie] = useState(null)
@@ -20,6 +21,7 @@ export default function App() {
 
   return (
     <View style={{ backgroundColor: colors.background, flex: 1 }} >
+      <StatusBar></StatusBar>
       {selectedMovie
         ? <MovieDetails movie={selectedMovie} onBack={backHandler} />
         : <MovieList movies={data.movies} onSelect= {selectMovieHandler}/>
