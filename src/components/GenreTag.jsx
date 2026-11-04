@@ -1,17 +1,28 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { colors } from "../theme";
+import { useContext } from "react";
+import { MovieContext } from "../contexts/MovieContext";
 
 export default function GenreTags({
-    genre
+    genre,
+
 }) {
+    const { selectedGenre, setSelectedGenre } = useContext(MovieContext)
     const genres = genre.split(',').map(g => g.trim())
+    const pressHandler = (name) =>{
+      if(name === selectedGenre){
+        setSelectedGenre(null)
+      } else {
+        setSelectedGenre(name)
+      }
+    }
     return(
         <View style={styles.row}>
             <Text> 
                 {genres.map((name, index) => (
-                    <View style= {styles.tag} key={index}>
+                    <Pressable style= {[styles.tag, selectedGenre === name && styles.tagActive]} key={index} onPress={()=> pressHandler(name)}>
                         <Text style={styles.text}>{name}</Text>
-                    </View>
+                    </Pressable>
                 ))}
             </Text>
         </View>

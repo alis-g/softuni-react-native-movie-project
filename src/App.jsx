@@ -6,6 +6,7 @@ import data from './data.json'
 import MovieList from './components/MovieList.jsx';
 import MovieDetails from './components/MovieDetails.jsx';
 import { useState } from 'react';
+import { MovieProvider } from './contexts/MovieContext.jsx';
 
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
   }
 
   return (
+    <MovieProvider>
     <View style={{ backgroundColor: colors.background, flex: 1 }} >
       <StatusBar></StatusBar>
       {selectedMovie
@@ -28,6 +30,7 @@ export default function App() {
       }
 
     </View>
+    </MovieProvider>
   );
 }
 

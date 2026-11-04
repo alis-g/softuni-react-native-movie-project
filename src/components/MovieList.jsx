@@ -1,11 +1,13 @@
 import { Text, View, StyleSheet, ScrollView } from "react-native";
 import MovieCard from "./MovieCard";
 import { colors } from "../theme"
+import { useContext } from "react";
+import { MovieContext } from "../contexts/MovieContext";
 
 export default function MovieList({
-    movies,
     onSelect
 }) {
+    const {movies} = useContext(MovieContext)
     return (
         <ScrollView contentContainerStyle={styles.content}>
             <View style={styles.header}>
